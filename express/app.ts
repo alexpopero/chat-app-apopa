@@ -163,6 +163,7 @@ app.delete('/conversations/:conversationId', async (req: Request, res:Response) 
     const aiMessage = new Message({
       conversationId: conversationId,
     });
+      await connectToDatabase();
       await aiMessage.delete();
     } catch(error) {
         console.error("Error deleting AI message", error);
