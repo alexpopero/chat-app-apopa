@@ -160,6 +160,9 @@ app.post('/conversations/:conversationId/messages', async (req: Request, res:Res
 // TODO Implement the logic for this endpoint
 app.delete('/conversations/:conversationId', async (req: Request, res:Response) => {
   const { conversationId } = req.params;
+  let answer;
+
+  answer = "Done";
   
   try {
     const aiMessage = new Message({
