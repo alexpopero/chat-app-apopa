@@ -159,6 +159,8 @@ app.post('/conversations/:conversationId/messages', async (req: Request, res:Res
 // DELETE /conversations/:conversationId - Delete a conversation and its messages
 // TODO Implement the logic for this endpoint
 app.delete('/conversations/:conversationId', async (req: Request, res:Response) => {
+  const { conversationId } = req.params;
+  
   try {
     const aiMessage = new Message({
       conversationId: conversationId,
