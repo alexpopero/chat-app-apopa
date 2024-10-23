@@ -2,9 +2,9 @@ import express from "express";
 import Serverless from "serverless-http";
 import dotenv from 'dotenv';
 import cors from 'cors';
-// import { OpenAI } from 'openai';
+import { OpenAI } from 'openai';
 import { Request, Response } from 'express';
-// import { connectToDatabase, Conversation, Message, mockConversations, mockMessages } from "./models";
+import { connectToDatabase, Conversation, Message, mockConversations, mockMessages } from "./models";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -159,7 +159,16 @@ app.get("/", (_req: Request, res: Response): void => {
 // DELETE /conversations/:conversationId - Delete a conversation and its messages
 // TODO Implement the logic for this endpoint
 app.delete('/conversations/:conversationId', async (req: Request, res:Response) => {
-  res.json({ message: "not implemented" });
+  try {
+    const aiMessage = new Message({
+      conversationId: conversationId,
+    });
+      await aiMessage.delete();
+    } catch(error) {
+        console.error("Error deleting AI message", error);
+    }
+
+    res.json({ message: "Message deleted successfully", answer});
   return;
 });
 
